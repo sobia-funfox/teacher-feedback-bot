@@ -11,7 +11,7 @@ const app = new App({
 
 const APPS_SCRIPT_URL = process.env.APPS_SCRIPT_URL;
 
-// Function to check Google Sheet and send review reminders
+// Function to check Google Sheet and send review reminders (Runs every hour: 0 * * * *)
 async function checkAndSendReminders() {
   console.log('Checking Google Sheet for due teacher reviews...');
   try {
@@ -287,6 +287,38 @@ app.action('open_review_modal', async ({ ack, body, client }) => {
             { text: { type: 'plain_text', text: 'Below 75% (Unsatisfactory)' }, value: 'Below 75% (Unsatisfactory)' }
           ]
         }
+      },
+      {
+        type: 'input',
+        block_id: 'q8_block',
+        label: { type: 'plain_text', text: '8. Disables Chat? (Classroom Control)' },
+        element: {
+          type: 'static_select',
+          action_id: 'q8_input',
+          placeholder: { type: 'plain_text', text: 'Select chat management status' },
+          options: [
+            { text: { type: 'plain_text', text: 'Yes, Consistently Disables Chat When Needed' }, value: 'Yes, Consistently Disables Chat When Needed' },
+            { text: { type: 'plain_text', text: 'Mostly Disables Chat (Occasional Reminders)' }, value: 'Mostly Disables Chat (Occasional Reminders)' },
+            { text: { type: 'plain_text', text: 'Rarely Disables Chat (Causes Distractions)' }, value: 'Rarely Disables Chat (Causes Distractions)' },
+            { text: { type: 'plain_text', text: 'No, Does Not Manage Chat Settings' }, value: 'No, Does Not Manage Chat Settings' }
+          ]
+        }
+      },
+      {
+        type: 'input',
+        block_id: 'q9_block',
+        label: { type: 'plain_text', text: '9. Builds on Homework Progress?' },
+        element: {
+          type: 'static_select',
+          action_id: 'q9_input',
+          placeholder: { type: 'plain_text', text: 'Select homework follow-up level' },
+          options: [
+            { text: { type: 'plain_text', text: 'Consistently Reviews & Integrates Homework' }, value: 'Consistently Reviews & Integrates Homework' },
+            { text: { type: 'plain_text', text: 'Regularly Checks & Builds on Homework' }, value: 'Regularly Checks & Builds on Homework' },
+            { text: { type: 'plain_text', text: 'Occasionally References Homework' }, value: 'Occasionally References Homework' },
+            { text: { type: 'plain_text', text: 'Does Not Review or Build on Homework' }, value: 'Does Not Review or Build on Homework' }
+          ]
+        }
       }
     ];
   } else if (reviewType === "6-Month") {
@@ -509,7 +541,9 @@ app.view('submit_teacher_review', async ({ ack, body, view, client }) => {
       "Student Engagement",
       "Marking & Feedback Turnaround",
       "Uptake of 14-Day Action Points",
-      "Attendance & Punctuality (Days 15–60)"
+      "Attendance & Punctuality (Days 15–60)",
+      "Disables Chat? (Classroom Control)",
+      "Builds on Homework Progress?"
     ],
     "6-Month": [
       "Observation Score Trend (2+ Obs)",
@@ -605,12 +639,12 @@ app.view('submit_teacher_review', async ({ ack, body, view, client }) => {
   }
 });
 
-// Cron Job: Runs every minute
+// Cron Job: Runs every 1 hour (0 * * * *)
 cron.schedule('0 * * * *', () => {
   checkAndSendReminders();
 });
 
 (async () => {
   await app.start();
-  console.log('⚡️ Feedback Bot is running successfully with Dropdown Forms & Employee DMs!');
+  console.log('⚡️ Feedback Bot is running successfully with Updated 60-Day Form & Hourly Checks!');
 })();
