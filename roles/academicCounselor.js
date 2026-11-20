@@ -230,7 +230,7 @@ function buildFeedbackModal({ milestone, employeeName, employeeSlackId, rowNumbe
       block_id: q.id,
       label: {
         type: 'plain_text',
-        text: `${q.label}: ${q.question}`.slice(0, 2000),
+        text: q.question.slice(0, 2000),
       },
       element: {
         type: 'static_select',

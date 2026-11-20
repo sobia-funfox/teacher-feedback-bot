@@ -47,7 +47,7 @@ function getMilestoneQuestions(roleConfig, reviewType) {
     return {
       focus: formConfig.subtitle || '',
       questions: formConfig.questions.map((q) => ({
-        label: `${q.label}: ${q.question}`,
+        label: q.question,
         placeholder: 'Select an option',
         options: q.options,
       })),
