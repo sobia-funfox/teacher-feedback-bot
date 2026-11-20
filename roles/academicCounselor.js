@@ -1,10 +1,25 @@
 // roles/academicCounselor.js
 
 const OVERALL_RATING_OPTIONS = [
-  'Exceeds Expectations',
-  'Meets Expectations',
-  'Needs Improvement',
-  'Below Expectations',
+  '5 - Exceeds Expectations',
+  '4 - Meets Expectations',
+  '3 - Satisfactory',
+  '2 - Needs Improvement',
+  '1 - Unsatisfactory',
+];
+
+const ATTENDANCE_OPTIONS = [
+  '95% - 100% (Excellent Attendance)',
+  '85% - 94% (Good Attendance)',
+  '75% - 84% (Fair Attendance)',
+  'Below 75% (Poor Attendance)',
+];
+
+const PUNCTUALITY_OPTIONS = [
+  'Always Punctual (On Time Every Shift)',
+  'Mostly Punctual (1-2 Minor Delays)',
+  'Occasionally Late (3-4 Delays)',
+  'Frequently Late (5+ Delays)',
 ];
 
 const MILESTONE_FORMS = {
@@ -14,7 +29,6 @@ const MILESTONE_FORMS = {
     questions: [
       {
         id: 'q1_program_knowledge',
-        label: 'Q1: Program & Pricing Knowledge',
         question: 'Does the employee understand courses, pricing, and student benefits?',
         options: [
           'Clear and accurate',
@@ -24,7 +38,6 @@ const MILESTONE_FORMS = {
       },
       {
         id: 'q2_tools_setup',
-        label: 'Q2: CRM & Calling Tools',
         question: 'Is the employee comfortable with calling, CRM, and booking tools?',
         options: [
           'Uses tools smoothly',
@@ -34,7 +47,6 @@ const MILESTONE_FORMS = {
       },
       {
         id: 'q3_communication_tone',
-        label: 'Q3: Call Tone & Confidence',
         question: 'How confident and polite is the employee on calls?',
         options: [
           'Confident and clear',
@@ -43,14 +55,14 @@ const MILESTONE_FORMS = {
         ],
       },
       {
-        id: 'q4_attendance_punctuality',
-        label: 'Q4: Attendance & Punctuality',
-        question: 'Is the employee on time for check-ins and shift hours?',
-        options: [
-          'Always on time',
-          'Rare minor delays',
-          'Often late or absent',
-        ],
+        id: 'q4_attendance',
+        question: 'Session Attendance %:',
+        options: ATTENDANCE_OPTIONS,
+      },
+      {
+        id: 'q5_punctuality',
+        question: 'Punctuality:',
+        options: PUNCTUALITY_OPTIONS,
       },
     ],
   },
@@ -61,7 +73,6 @@ const MILESTONE_FORMS = {
     questions: [
       {
         id: 'q1_needs_pitching',
-        label: 'Q1: Needs & Pitching',
         question: 'Does the employee match the program to parent needs?',
         options: [
           'Tailors pitch well',
@@ -71,7 +82,6 @@ const MILESTONE_FORMS = {
       },
       {
         id: 'q2_consistent_followups',
-        label: 'Q2: Timely Follow-Ups',
         question: 'Does the employee follow up consistently with leads and demos?',
         options: [
           'Always prompt',
@@ -81,7 +91,6 @@ const MILESTONE_FORMS = {
       },
       {
         id: 'q3_crm_accuracy',
-        label: 'Q3: CRM Accuracy',
         question: 'Are call notes, statuses, and bookings updated accurately?',
         options: [
           'Accurate and timely',
@@ -90,14 +99,14 @@ const MILESTONE_FORMS = {
         ],
       },
       {
-        id: 'q4_attendance_discipline',
-        label: 'Q4: Shift & Call Availability',
-        question: 'Is the employee reliable during peak calling hours?',
-        options: [
-          'Consistent and active',
-          'Minor slowdowns',
-          'Irregular or unavailable',
-        ],
+        id: 'q4_attendance',
+        question: 'Session Attendance %:',
+        options: ATTENDANCE_OPTIONS,
+      },
+      {
+        id: 'q5_punctuality',
+        question: 'Punctuality:',
+        options: PUNCTUALITY_OPTIONS,
       },
     ],
   },
@@ -108,7 +117,6 @@ const MILESTONE_FORMS = {
     questions: [
       {
         id: 'q1_objection_handling',
-        label: 'Q1: Objection Handling',
         question: 'How well does the employee handle parent doubts and objections?',
         options: [
           'Handles calmly and converts',
@@ -118,7 +126,6 @@ const MILESTONE_FORMS = {
       },
       {
         id: 'q2_call_review_feedback',
-        label: 'Q2: Applying Feedback',
         question: 'Does the employee apply manager feedback on calls?',
         options: [
           'Clear improvement',
@@ -128,7 +135,6 @@ const MILESTONE_FORMS = {
       },
       {
         id: 'q3_team_coordination',
-        label: 'Q3: Team Coordination',
         question: 'How smoothly does the employee coordinate for demos and trials?',
         options: [
           'Smooth and accurate',
@@ -137,14 +143,14 @@ const MILESTONE_FORMS = {
         ],
       },
       {
-        id: 'q4_punctuality_deadlines',
-        label: 'Q4: Punctuality & Reports',
-        question: 'Are meetings and daily reports submitted on time?',
-        options: [
-          'Always on time',
-          'Rare reporting delays',
-          'Frequent delays',
-        ],
+        id: 'q4_attendance',
+        question: 'Session Attendance %:',
+        options: ATTENDANCE_OPTIONS,
+      },
+      {
+        id: 'q5_punctuality',
+        question: 'Punctuality:',
+        options: PUNCTUALITY_OPTIONS,
       },
     ],
   },
@@ -155,7 +161,6 @@ const MILESTONE_FORMS = {
     questions: [
       {
         id: 'q1_enrollment_targets',
-        label: 'Q1: Demo & Enrollment Targets',
         question: 'Is the employee meeting expected conversion targets?',
         options: [
           'Meets or exceeds targets',
@@ -165,7 +170,6 @@ const MILESTONE_FORMS = {
       },
       {
         id: 'q2_pipeline_management',
-        label: 'Q2: Independent Ownership',
         question: 'Does the employee manage leads and calls independently?',
         options: [
           'Fully independent',
@@ -175,7 +179,6 @@ const MILESTONE_FORMS = {
       },
       {
         id: 'q3_trust_building',
-        label: 'Q3: Parent Trust',
         question: 'Does the employee build trust with parents?',
         options: [
           'Strong parent trust',
@@ -184,14 +187,14 @@ const MILESTONE_FORMS = {
         ],
       },
       {
-        id: 'q4_overall_fit',
-        label: 'Q4: Long-Term Role Fit',
-        question: 'Is the employee ready for a permanent role?',
-        options: [
-          'Ready for permanent role',
-          'Needs minor coaching',
-          'Not ready yet',
-        ],
+        id: 'q4_attendance',
+        question: 'Session Attendance %:',
+        options: ATTENDANCE_OPTIONS,
+      },
+      {
+        id: 'q5_punctuality',
+        question: 'Punctuality:',
+        options: PUNCTUALITY_OPTIONS,
       },
     ],
   },
@@ -330,6 +333,8 @@ module.exports = {
   sheetTab: 'AcademicCounselor_Tracking',
   milestones: Object.keys(MILESTONE_FORMS),
   overallRatingOptions: OVERALL_RATING_OPTIONS,
+  attendanceOptions: ATTENDANCE_OPTIONS,
+  punctualityOptions: PUNCTUALITY_OPTIONS,
   milestoneForms: MILESTONE_FORMS,
   buildFeedbackModal,
   parseFeedbackSubmission,
