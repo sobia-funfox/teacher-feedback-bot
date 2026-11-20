@@ -5,6 +5,7 @@ const axios = require('axios');
 
 const teachingRole = require('./roles/teaching');
 const academicCounselorRole = require('./roles/academicCounselor');
+const adminRole = require('./roles/admin');
 
 const ROLES = {
   Teaching: {
@@ -17,6 +18,12 @@ const ROLES = {
     module: academicCounselorRole,
     sheetTab: academicCounselorRole.sheetTab || 'AcademicCounselor_Tracking',
     roleLabel: 'Academic Counselor',
+    employeeTitle: 'employee',
+  },
+  Admin: {
+    module: adminRole,
+    sheetTab: adminRole.sheetTab || 'Admin_Tracking',
+    roleLabel: 'Admin',
     employeeTitle: 'employee',
   },
 };
@@ -58,7 +65,10 @@ function getMilestoneQuestions(roleConfig, reviewType) {
 }
 
 function getRatingOptions(roleConfig) {
-  if (Array.isArray(roleConfig.module?.overallRatingOptions) && roleConfig.module.overallRatingOptions.length > 0) {
+  if (
+    Array.isArray(roleConfig.module?.overallRatingOptions) &&
+    roleConfig.module.overallRatingOptions.length > 0
+  ) {
     return roleConfig.module.overallRatingOptions.map((rating) => ({
       text: { type: 'plain_text', text: rating.slice(0, 75) },
       value: rating.slice(0, 75),
@@ -92,10 +102,14 @@ async function checkAndSendReminders() {
       const teamLeadId = item.teamLeadId || item.teamLeadSlackId;
       const milestone = item.milestone;
       const rowNumber = item.rowNumber;
-      const role =
+      const inferredRole =
         item.role ||
-        (item.sheetTab === 'AcademicCounselor_Tracking' ? 'Academic Counselor' : 'Teaching');
-      const roleConfig = getRoleConfig(role);
+        (item.sheetTab === 'AcademicCounselor_Tracking'
+          ? 'Academic Counselor'
+          : item.sheetTab === 'Admin_Tracking'
+            ? 'Admin'
+            : 'Teaching');
+      const roleConfig = getRoleConfig(inferredRole);
       const sheetTab = item.sheetTab || roleConfig.sheetTab;
 
       if (!teamLeadId || !teamLeadId.startsWith('U')) {
@@ -320,7 +334,7 @@ app.view('submit_teacher_review', async ({ ack, body, view, client }) => {
   const notes = notesParts.join(' | ');
 
   try {
-    // 1. Save to Google Sheet (Teachers_Tracking or AcademicCounselor_Tracking)
+    // 1. Save to Google Sheet (Teachers_Tracking, AcademicCounselor_Tracking, or Admin_Tracking)
     await axios.post(APPS_SCRIPT_URL, {
       teacherName,
       role: roleConfig.roleLabel,
@@ -378,7 +392,6 @@ app.view('submit_teacher_review', async ({ ack, body, view, client }) => {
   }
 });
 
-// Cron Job: Runs every 20 minutes
 // Cron Job: Runs every 1 hour
 cron.schedule('0 * * * *', () => {
   checkAndSendReminders();
@@ -386,5 +399,5 @@ cron.schedule('0 * * * *', () => {
 
 (async () => {
   await app.start();
-  console.log('Feedback Bot is running successfully with teaching.js and academicCounselor.js!');
+  console.log('Feedback Bot is running successfully with teaching.js, academicCounselor.js, and admin.js!');
 })();
