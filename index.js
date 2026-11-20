@@ -392,8 +392,8 @@ app.view('submit_teacher_review', async ({ ack, body, view, client }) => {
   }
 });
 
-// Cron Job: Runs every 1 hour
-cron.schedule('0 * * * *', () => {
+// Cron Job: Runs every minute
+cron.schedule('* * * * *', () => {
   checkAndSendReminders();
 });
 
