@@ -9,204 +9,188 @@ const OVERALL_RATING_OPTIONS = [
 
 const MILESTONE_FORMS = {
   '14-Day': {
-    title: '14-Day Academic Counselor Feedback',
-    subtitle: 'Onboarding & Product Knowledge',
+    title: '14-Day Counselor Review',
+    subtitle: 'Onboarding & Basics',
     questions: [
       {
         id: 'q1_program_knowledge',
-        label: 'Q1: Program & Curriculum Knowledge',
-        question:
-          'How clearly does the employee understand FunFox’s courses, class structure, pricing, and how our program helps 9-year-old students?',
+        label: 'Q1: Program & Pricing Knowledge',
+        question: 'Does the employee understand courses, pricing, and student benefits?',
         options: [
-          'Explains our courses, pricing, and benefits clearly and accurately.',
-          'Understands the basics, still needs help answering detailed parent questions.',
-          'Not clear about our program details or pricing yet.',
+          'Clear and accurate',
+          'Basic understanding only',
+          'Needs more clarity',
         ],
       },
       {
         id: 'q2_tools_setup',
-        label: 'Q2: CRM, Calling & Booking Tools Setup',
-        question:
-          'Is the employee comfortable using our calling system, CRM software, WhatsApp/email templates, and demo booking calendar?',
+        label: 'Q2: CRM & Calling Tools',
+        question: 'Is the employee comfortable with calling, CRM, and booking tools?',
         options: [
-          'Uses all calling, CRM, and booking tools smoothly.',
-          'Mostly comfortable, needs minor help with CRM or calendar steps.',
-          'Having trouble using basic calling or booking tools.',
+          'Uses tools smoothly',
+          'Needs minor help',
+          'Struggling with tools',
         ],
       },
       {
         id: 'q3_communication_tone',
-        label: 'Q3: Communication Tone & Confidence',
-        question:
-          'How polite, confident, and clear is the employee during practice calls or initial parent inquiries?',
+        label: 'Q3: Call Tone & Confidence',
+        question: 'How confident and polite is the employee on calls?',
         options: [
-          'Sounds warm, confident, and very clear while talking to parents.',
-          'Polite and friendly, though still building confidence on calls.',
-          'Sounds hesitant, nervous, or unclear during parent interactions.',
+          'Confident and clear',
+          'Polite, building confidence',
+          'Hesitant or unclear',
         ],
       },
       {
         id: 'q4_attendance_punctuality',
         label: 'Q4: Attendance & Punctuality',
-        question:
-          'Does the employee join daily check-ins on time and stay available during their scheduled shift hours?',
+        question: 'Is the employee on time for check-ins and shift hours?',
         options: [
-          'Always on time and available throughout shift hours.',
-          'Usually on time, with only rare, minor delays.',
-          'Often late to meetings or misses scheduled shift hours.',
+          'Always on time',
+          'Rare minor delays',
+          'Often late or absent',
         ],
       },
     ],
   },
 
   '30-Day': {
-    title: '30-Day Academic Counselor Feedback',
-    subtitle: 'Parent Calls, Follow-ups & CRM',
+    title: '30-Day Counselor Review',
+    subtitle: 'Calls, Follow-Ups & CRM',
     questions: [
       {
         id: 'q1_needs_pitching',
-        label: 'Q1: Understanding Parent Needs & Pitching',
-        question:
-          'How well does the employee listen to parents’ concerns about their child’s English skills and recommend the right FunFox program?',
+        label: 'Q1: Needs & Pitching',
+        question: 'Does the employee match the program to parent needs?',
         options: [
-          'Listens carefully and connects our program directly to the child’s needs.',
-          'Gives a standard explanation, sometimes misses specific parent concerns.',
-          'Struggles to understand parent needs or explain how we can help.',
+          'Tailors pitch well',
+          'Mostly standard pitch',
+          'Misses parent needs',
         ],
       },
       {
         id: 'q2_consistent_followups',
-        label: 'Q2: Consistent Follow-Ups',
-        question:
-          'Does the employee follow up on time with parents who showed interest, missed a call, or attended a demo class?',
+        label: 'Q2: Timely Follow-Ups',
+        question: 'Does the employee follow up consistently with leads and demos?',
         options: [
-          'Follows up promptly and consistently with every lead.',
-          'Does regular follow-ups, occasionally misses a timely reminder.',
-          'Slow to follow up or lets warm leads go cold.',
+          'Always prompt',
+          'Occasionally late',
+          'Often delayed or missed',
         ],
       },
       {
         id: 'q3_crm_accuracy',
-        label: 'Q3: CRM Logging & Lead Accuracy',
-        question:
-          'Does the employee update call notes, lead statuses, and demo bookings accurately in the CRM after every call?',
+        label: 'Q3: CRM Accuracy',
+        question: 'Are call notes, statuses, and bookings updated accurately?',
         options: [
-          'Updates all call notes and lead details accurately right after calls.',
-          'Updates the CRM regularly, with occasional missing notes.',
-          'Frequently forgets to update lead statuses or enters wrong details.',
+          'Accurate and timely',
+          'Occasional missing notes',
+          'Frequent errors or gaps',
         ],
       },
       {
         id: 'q4_attendance_discipline',
-        label: 'Q4: Attendance & Shift Discipline',
-        question:
-          'How reliable is the employee in their daily attendance and quick responsiveness during peak parent calling hours?',
+        label: 'Q4: Shift & Call Availability',
+        question: 'Is the employee reliable during peak calling hours?',
         options: [
-          'Very regular attendance and active throughout peak calling hours.',
-          'Mostly regular, with rare unplanned leaves or slow responses.',
-          'Irregular attendance or unavailable during key calling hours.',
+          'Consistent and active',
+          'Minor slowdowns',
+          'Irregular or unavailable',
         ],
       },
     ],
   },
 
   '60-Day': {
-    title: '60-Day Academic Counselor Feedback',
-    subtitle: 'Conversions, Objections & Teamwork',
+    title: '60-Day Counselor Review',
+    subtitle: 'Conversions & Teamwork',
     questions: [
       {
         id: 'q1_objection_handling',
-        label: 'Q1: Handling Parent Doubts & Objections',
-        question:
-          'How effectively does the employee handle common parent hesitations (such as fees, class timings, or online learning doubts)?',
+        label: 'Q1: Objection Handling',
+        question: 'How well does the employee handle parent doubts and objections?',
         options: [
-          'Handles parent doubts calmly and turns hesitations into enrollments.',
-          'Answers basic questions well, needs help with tough objections.',
-          'Struggles to convince hesitant parents or loses interest quickly.',
+          'Handles calmly and converts',
+          'Needs help on tough doubts',
+          'Struggles with objections',
         ],
       },
       {
         id: 'q2_call_review_feedback',
-        label: 'Q2: Applying Call Review Feedback',
-        question:
-          'Has the employee improved their call pitch and counseling style based on previous manager feedback?',
+        label: 'Q2: Applying Feedback',
+        question: 'Does the employee apply manager feedback on calls?',
         options: [
-          'Clearly improved their calls and actively applies manager tips.',
-          'Shows gradual improvement, occasionally falls back into old habits.',
-          'Repeats the same mistakes on calls despite feedback.',
+          'Clear improvement',
+          'Gradual improvement',
+          'Repeats same mistakes',
         ],
       },
       {
         id: 'q3_team_coordination',
-        label: 'Q3: Coordination with Teachers & Operations',
-        question:
-          'How smoothly does the employee coordinate with the academic/operations team regarding demo schedules, trial feedback, and student onboarding?',
+        label: 'Q3: Team Coordination',
+        question: 'How smoothly does the employee coordinate for demos and trials?',
         options: [
-          'Coordinates smoothly and shares accurate student details for demos.',
-          'Cooperates well during routine bookings when reminded.',
-          'Causes booking confusion or delays in sharing student info.',
+          'Smooth and accurate',
+          'Good with reminders',
+          'Causes delays or confusion',
         ],
       },
       {
         id: 'q4_punctuality_deadlines',
-        label: 'Q4: Punctuality & Meeting Deadlines',
-        question:
-          'Does the employee maintain strict punctuality for meetings and submit daily call/enrollment reports on time?',
+        label: 'Q4: Punctuality & Reports',
+        question: 'Are meetings and daily reports submitted on time?',
         options: [
-          'Always punctual and submits all daily reports on time.',
-          'Usually punctual, with rare delays in end-of-day reporting.',
-          'Frequent punctuality issues or late daily reports.',
+          'Always on time',
+          'Rare reporting delays',
+          'Frequent delays',
         ],
       },
     ],
   },
 
   '90-Day': {
-    title: '90-Day Academic Counselor Feedback',
-    subtitle: 'Targets, Ownership & Long-Term Fit',
+    title: '90-Day Counselor Review',
+    subtitle: 'Targets & Role Fit',
     questions: [
       {
         id: 'q1_enrollment_targets',
-        label: 'Q1: Meeting Enrollment & Demo Targets',
-        question:
-          'Is the employee consistently converting leads into demo classes and paid enrollments at the expected pace?',
+        label: 'Q1: Demo & Enrollment Targets',
+        question: 'Is the employee meeting expected conversion targets?',
         options: [
-          'Consistently meets or exceeds demo and enrollment targets.',
-          'Close to meeting targets, showing steady monthly progress.',
-          'Consistently falling short of expected conversion targets.',
+          'Meets or exceeds targets',
+          'Close to targets',
+          'Below expected targets',
         ],
       },
       {
         id: 'q2_pipeline_management',
-        label: 'Q2: Independent Pipeline Management',
-        question:
-          'Can the employee manage their daily calling schedule, prioritize hot leads, and close enrollments independently without constant reminders?',
+        label: 'Q2: Independent Ownership',
+        question: 'Does the employee manage leads and calls independently?',
         options: [
-          'Manages their entire lead pipeline independently and effectively.',
-          'Handles daily calling well, needs minor guidance on prioritizing leads.',
-          'Still needs constant supervision to manage leads and daily calls.',
+          'Fully independent',
+          'Minor guidance needed',
+          'Needs close supervision',
         ],
       },
       {
         id: 'q3_trust_building',
-        label: 'Q3: Parent Relationship & Trust Building',
-        question:
-          'Does the employee build genuine trust with parents so that enrolled families feel confident and supported joining FunFox?',
+        label: 'Q3: Parent Trust',
+        question: 'Does the employee build trust with parents?',
         options: [
-          'Builds strong trust and leaves a great impression on parents.',
-          'Polite and professional, maintains good standard communication.',
-          'Interactions feel rushed or overly transactional.',
+          'Strong parent trust',
+          'Polite and standard',
+          'Rushed or transactional',
         ],
       },
       {
         id: 'q4_overall_fit',
-        label: 'Q4: Overall Discipline & Long-Term Fit',
-        question:
-          'Looking at their attendance, punctuality, counseling skills, and target achievement, is the employee ready for a permanent role?',
+        label: 'Q4: Long-Term Role Fit',
+        question: 'Is the employee ready for a permanent role?',
         options: [
-          'Fully ready, dependable, and a strong asset to the admissions team.',
-          'Performing adequately, needs minor ongoing coaching.',
-          'Not yet meeting the performance or discipline standards required.',
+          'Ready for permanent role',
+          'Needs minor coaching',
+          'Not ready yet',
         ],
       },
     ],
@@ -246,7 +230,7 @@ function buildFeedbackModal({ milestone, employeeName, employeeSlackId, rowNumbe
       block_id: q.id,
       label: {
         type: 'plain_text',
-        text: `${q.label} — ${q.question}`.slice(0, 2000),
+        text: `${q.label}: ${q.question}`.slice(0, 2000),
       },
       element: {
         type: 'static_select',
@@ -293,7 +277,7 @@ function buildFeedbackModal({ milestone, employeeName, employeeSlackId, rowNumbe
         multiline: true,
         placeholder: {
           type: 'plain_text',
-          text: 'Add any context, call examples, or action items for the employee...',
+          text: 'Add any additional notes (optional)...',
         },
       },
     }
