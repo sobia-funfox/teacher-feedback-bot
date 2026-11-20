@@ -22,181 +22,169 @@ const PUNCTUALITY_OPTIONS = [
   'Frequently Late (5+ Delays)',
 ];
 
+function createMilestoneQuestions(roleSpecificQuestions) {
+  return [
+    {
+      id: 'q1_attendance',
+      question: 'Session Attendance %:',
+      options: ATTENDANCE_OPTIONS,
+    },
+    {
+      id: 'q2_punctuality',
+      question: 'Punctuality:',
+      options: PUNCTUALITY_OPTIONS,
+    },
+    ...roleSpecificQuestions,
+  ];
+}
+
 const MILESTONE_FORMS = {
   '14-Day': {
     title: '14-Day Counselor Review',
     subtitle: 'Onboarding & Basics',
-    questions: [
+    questions: createMilestoneQuestions([
       {
-        id: 'q1_program_knowledge',
+        id: 'q3_program_knowledge',
         question: 'Does the employee understand courses, pricing, and student benefits?',
         options: [
           'Clear and accurate',
+          'Mostly clear, minor gaps',
           'Basic understanding only',
           'Needs more clarity',
         ],
       },
       {
-        id: 'q2_tools_setup',
+        id: 'q4_tools_setup',
         question: 'Is the employee comfortable with calling, CRM, and booking tools?',
         options: [
           'Uses tools smoothly',
-          'Needs minor help',
+          'Confident with minor help',
+          'Needs regular guidance',
           'Struggling with tools',
         ],
       },
       {
-        id: 'q3_communication_tone',
+        id: 'q5_communication_tone',
         question: 'How confident and polite is the employee on calls?',
         options: [
           'Confident and clear',
-          'Polite, building confidence',
+          'Polite and steady',
+          'Developing confidence',
           'Hesitant or unclear',
         ],
       },
-      {
-        id: 'q4_attendance',
-        question: 'Session Attendance %:',
-        options: ATTENDANCE_OPTIONS,
-      },
-      {
-        id: 'q5_punctuality',
-        question: 'Punctuality:',
-        options: PUNCTUALITY_OPTIONS,
-      },
-    ],
+    ]),
   },
 
   '30-Day': {
     title: '30-Day Counselor Review',
     subtitle: 'Calls, Follow-Ups & CRM',
-    questions: [
+    questions: createMilestoneQuestions([
       {
-        id: 'q1_needs_pitching',
+        id: 'q3_needs_pitching',
         question: 'Does the employee match the program to parent needs?',
         options: [
-          'Tailors pitch well',
-          'Mostly standard pitch',
+          'Tailors pitch effectively',
+          'Mostly matches parent needs',
+          'Standard pitch with minor gaps',
           'Misses parent needs',
         ],
       },
       {
-        id: 'q2_consistent_followups',
+        id: 'q4_consistent_followups',
         question: 'Does the employee follow up consistently with leads and demos?',
         options: [
-          'Always prompt',
-          'Occasionally late',
+          'Always timely and consistent',
+          'Mostly timely follow-ups',
+          'Occasionally delayed',
           'Often delayed or missed',
         ],
       },
       {
-        id: 'q3_crm_accuracy',
+        id: 'q5_crm_accuracy',
         question: 'Are call notes, statuses, and bookings updated accurately?',
         options: [
-          'Accurate and timely',
+          'Accurate and up to date',
+          'Mostly accurate',
           'Occasional missing notes',
           'Frequent errors or gaps',
         ],
       },
-      {
-        id: 'q4_attendance',
-        question: 'Session Attendance %:',
-        options: ATTENDANCE_OPTIONS,
-      },
-      {
-        id: 'q5_punctuality',
-        question: 'Punctuality:',
-        options: PUNCTUALITY_OPTIONS,
-      },
-    ],
+    ]),
   },
 
   '60-Day': {
     title: '60-Day Counselor Review',
     subtitle: 'Conversions & Teamwork',
-    questions: [
+    questions: createMilestoneQuestions([
       {
-        id: 'q1_objection_handling',
+        id: 'q3_objection_handling',
         question: 'How well does the employee handle parent doubts and objections?',
         options: [
           'Handles calmly and converts',
+          'Handles most doubts well',
           'Needs help on tough doubts',
           'Struggles with objections',
         ],
       },
       {
-        id: 'q2_call_review_feedback',
+        id: 'q4_call_review_feedback',
         question: 'Does the employee apply manager feedback on calls?',
         options: [
-          'Clear improvement',
+          'Applies feedback consistently',
+          'Clear positive improvement',
           'Gradual improvement',
           'Repeats same mistakes',
         ],
       },
       {
-        id: 'q3_team_coordination',
+        id: 'q5_team_coordination',
         question: 'How smoothly does the employee coordinate for demos and trials?',
         options: [
           'Smooth and accurate',
+          'Reliable coordination',
           'Good with reminders',
           'Causes delays or confusion',
         ],
       },
-      {
-        id: 'q4_attendance',
-        question: 'Session Attendance %:',
-        options: ATTENDANCE_OPTIONS,
-      },
-      {
-        id: 'q5_punctuality',
-        question: 'Punctuality:',
-        options: PUNCTUALITY_OPTIONS,
-      },
-    ],
+    ]),
   },
 
   '90-Day': {
     title: '90-Day Counselor Review',
     subtitle: 'Targets & Role Fit',
-    questions: [
+    questions: createMilestoneQuestions([
       {
-        id: 'q1_enrollment_targets',
+        id: 'q3_enrollment_targets',
         question: 'Is the employee meeting expected conversion targets?',
         options: [
           'Meets or exceeds targets',
+          'On track toward targets',
           'Close to targets',
           'Below expected targets',
         ],
       },
       {
-        id: 'q2_pipeline_management',
+        id: 'q4_pipeline_management',
         question: 'Does the employee manage leads and calls independently?',
         options: [
           'Fully independent',
+          'Independent with light check-ins',
           'Minor guidance needed',
           'Needs close supervision',
         ],
       },
       {
-        id: 'q3_trust_building',
+        id: 'q5_trust_building',
         question: 'Does the employee build trust with parents?',
         options: [
-          'Strong parent trust',
+          'Builds strong parent trust',
+          'Warm and reliable',
           'Polite and standard',
           'Rushed or transactional',
         ],
       },
-      {
-        id: 'q4_attendance',
-        question: 'Session Attendance %:',
-        options: ATTENDANCE_OPTIONS,
-      },
-      {
-        id: 'q5_punctuality',
-        question: 'Punctuality:',
-        options: PUNCTUALITY_OPTIONS,
-      },
-    ],
+    ]),
   },
 };
 
